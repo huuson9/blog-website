@@ -54,7 +54,7 @@ class Blog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    image = models.CharField(max_length=200, default='blog/default.jpg')
     category = models.CharField(
         max_length=100, default='uncategorized', choices=CHOICES)
     publish_status = models.BooleanField(default=True, choices=(

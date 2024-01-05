@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     container: {
       padding: {
@@ -14,11 +12,11 @@ module.exports = {
       },
     },
     fontFamily: {
-      monoton:["Monoton", "cursive"],
-      satoshi:['Satoshi', 'sans-serif'],
-      clash:['Clash Display', 'sans-serif'],
+      monoton: ["Monoton", "cursive"],
+      satoshi: ["Satoshi", "sans-serif"],
+      clash: ["Clash Display", "sans-serif"],
       infinite: ["Outfit", "sans-serif"],
-      bebasneo: ['Bebas Neue', 'cursive'],
+      bebasneo: ["Bebas Neue", "cursive"],
     },
     extend: {
       boxShadow: {
@@ -28,7 +26,7 @@ module.exports = {
         glass: "1px 5px 12px 1px rgba( 31, 38, 135, 0.37 )",
         "glass-card": "4px 4px 4px 4px rgba( 32, 32, 32, 0.37 )",
         "card-shadow": "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )",
-        "dark-shadow": "10px 10px 5px 0px rgba(130,130,130,0.75)"
+        "dark-shadow": "10px 10px 5px 0px rgba(130,130,130,0.75)",
       },
 
       colors: {
@@ -41,15 +39,13 @@ module.exports = {
           DEFAULT: "#3ABFF8",
           secondary: "#828DF8",
           accent: "#F471B5",
-          neutral: "#1D283A",
+          neutral: "##f9f9f9",
           info: "#0CA6E9",
           success: "#2BD4BD",
           warning: "#F4C152",
           error: "#FB6F84",
-          base: "#0F1729",
-         
+          base: "#f9f9f9",
         },
-      
       },
     },
   },
@@ -57,27 +53,26 @@ module.exports = {
     themes: [
       {
         mytheme: {
-        
-"primary": "#3ABFF8",
-        
-"secondary": "#828DF8",
-        
-"accent": "#F471B5",
-        
-"neutral": "#1D283A",
-        
-"base-100": "#0F1729",
-        
-"info": "#0CA6E9",
-        
-"success": "#2BD4BD",
-        
-"warning": "#F4C152",
-        
-"error": "#FB6F84",
+          primary: "#3ABFF8",
+
+          secondary: "#828DF8",
+
+          accent: "#F471B5",
+
+          neutral: "#1D283A",
+
+          "base-100": "#f9f9f9",
+
+          info: "#0CA6E9",
+
+          success: "#2BD4BD",
+
+          warning: "#F4C152",
+
+          error: "#FB6F84",
         },
       },
     ],
   },
   plugins: [require("@tailwindcss/line-clamp"), require("daisyui")],
-}
+};

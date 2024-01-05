@@ -181,23 +181,23 @@ const BlogDetails = () => {
         </div>
       )}
       {!loading && (
-        <div className="container mx-auto  my-10 animate__animated animate__fadeIn">
-          <div className="rounded-2xl bg-primary-neutral border border-primary-base  relative shadow-2xl">
-            <div className="overflow-hidden rounded-t-2xl relative">
+        <div className="container mx-auto my-10 animate__animated animate__fadeIn">
+          <div className="relative border shadow-2xl rounded-2xl bg-primary-neutral border-primary-base">
+            <div className="relative overflow-hidden rounded-t-2xl">
               <img
                 className=" md:h-[500px] w-full object-cover"
-                src={`${BASE_URL}${image}`}
+                src={image}
                 alt=""
               />
 
-              <p className="absolute top-4 left-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 font-semibold text-white rounded-3xl hover:scale-110 transition duration-500">
+              <p className="absolute px-4 py-2 font-semibold text-white transition duration-500 top-4 left-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-3xl hover:scale-110">
                 {category}
               </p>
             </div>
-            <div className="flex flex-wrap md:justify-between px-2 md:px-10 pt-4">
-              <div className="flex gap-2 items-center">
+            <div className="flex flex-wrap px-2 pt-4 md:justify-between md:px-10">
+              <div className="flex items-center gap-2">
                 <img
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="object-cover w-10 h-10 rounded-full"
                   src={`${BASE_URL}${author_photo}`}
                   alt=""
                 />
@@ -205,25 +205,25 @@ const BlogDetails = () => {
               </div>
 
               <div className="flex items-center gap-1">
-                <HiOutlineCalendar className="font-semibold md:text-2xl text-blue-600" />
+                <HiOutlineCalendar className="font-semibold text-blue-600 md:text-2xl" />
                 <p className="text-xs md:text-lg">{date_created}</p>
 
-                <IoIosTimer className="text-purple-600 font-semibold md:text-2xl ml-4" />
+                <IoIosTimer className="ml-4 font-semibold text-purple-600 md:text-2xl" />
                 <p className="text-xs md:text-lg">{reading_time}</p>
               </div>
-              <div className=" flex justify-end items-center gap-2 px-2">
+              <div className="flex items-center justify-end gap-2 px-2 ">
                 {user && user.username === blog.author_name ? (
                   <>
                     <button
                       onClick={handleEdit}
-                      className="bg-primary-info p-3 rounded-2xl hover:scale-95 cursor-pointer"
+                      className="p-3 cursor-pointer bg-primary-info rounded-2xl hover:scale-95"
                     >
                       <RiEditCircleFill className="text-gray-50" />
                     </button>
 
                     <button
                       onClick={handleDelete}
-                      className="bg-primary-error p-3 rounded-2xl hover:scale-95 cursor-pointer"
+                      className="p-3 cursor-pointer bg-primary-error rounded-2xl hover:scale-95"
                     >
                       <MdDelete className="text-gray-100" />
                     </button>
@@ -231,9 +231,10 @@ const BlogDetails = () => {
                 ) : null}
               </div>
             </div>
-            <div className="flex flex-col px-2 md:px-10 py-2">
-              <div className="flex justify-between items-center">
-                <p className="text-2xl blog-title font-bold">{title}</p>
+            <div className="flex flex-col px-2 py-2 md:px-10">
+              <div className="flex items-center justify-between">
+                <p className="text-2xl font-bold blog-title">{title}</p>
+
                 <LikeBtn
                   total_likes={total_likes}
                   handleLike={handleLike}
@@ -243,16 +244,15 @@ const BlogDetails = () => {
                   user={user}
                 />
               </div>
-
               <div>
                 <ReactQuill value={content} readOnly={true} theme={"bubble"} />
               </div>
             </div>
           </div>
-          <h2 className="font-semibold text-xl mt-5 mb-2">Comment</h2>
+          <h2 className="mt-5 mb-2 text-xl font-semibold">Comment</h2>
           <form onSubmit={handleSubmitComment}>
             <input
-              className="bg-primary-neutral border border-slate-600 w-full rounded p-3 focus:outline-primary"
+              className="w-full p-3 border rounded bg-primary-neutral border-slate-600 focus:outline-primary"
               type="text"
               placeholder="Write your thought..."
               value={comment}
@@ -261,7 +261,7 @@ const BlogDetails = () => {
             />
             <div className="flex justify-end mt-5">
               <button
-                className="btn btn-sm bg-blue-500 text-white mb-5 capitalize"
+                className="mb-5 text-white capitalize bg-blue-500 btn btn-sm"
                 type="submit"
               >
                 Comment

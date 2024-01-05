@@ -34,13 +34,13 @@ const Home = () => {
           <p className="text-2xl font-semibold text-center">
             No blog entries found!
           </p>
-          <p className="text-primary text-center">
+          <p className="text-center text-primary">
             You can create blog from your profile tab
           </p>
           <img src={notfound} alt="" className="w-1/2 mx-auto" />
         </>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="grid grid-cols-1 lg:grid-cols-1">
           {blogs.map((blog) => {
             return (
               <Blog

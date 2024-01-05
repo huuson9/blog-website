@@ -51,7 +51,7 @@ def getMyBlogs(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def createBlog(request):
     data = request.data
     user = Profile.objects.get(id=data['author'])
@@ -63,7 +63,7 @@ def createBlog(request):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def updateBlog(request, pk):
     data = request.data
     blog = Blog.objects.get(pk=pk)

@@ -60,23 +60,23 @@ const EditBlog = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 lg:py-0 my-8">
+    <div className="flex flex-col items-center justify-center py-8 my-8 lg:py-0">
       {message && (
         <div className="error" style={{ color: "white" }}>
           {message}
         </div>
       )}
 
-      <div className="w-full bg-slate-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+      <div className="w-full rounded-lg shadow bg-slate-800 dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
+          <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
             Edit your Blog
           </h1>
           <form className="space-y-4 md:space-y-6" onSubmit={handleUpdate}>
             <div>
               <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-medium  "
+                className="block mb-2 text-sm font-medium "
               >
                 Title
               </label>
@@ -89,6 +89,7 @@ const EditBlog = () => {
                 type="text"
               />
             </div>
+
             <div>
               <label
                 htmlFor="content"
@@ -96,7 +97,7 @@ const EditBlog = () => {
               >
                 Content
               </label>
-              <div className="rounded overflow-hidden">
+              <div className="overflow-hidden rounded">
                 <ReactQuill
                   className="text-black bg-slate-400 "
                   theme="snow"
@@ -109,7 +110,7 @@ const EditBlog = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-2 text-sm font-medium  "
+                className="block mb-2 text-sm font-medium "
               >
                 File Upload
               </label>
