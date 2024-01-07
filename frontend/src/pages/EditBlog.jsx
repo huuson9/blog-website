@@ -60,28 +60,28 @@ const EditBlog = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 lg:py-0 my-8">
+    <div className="flex flex-col items-center justify-center py-8 my-8 lg:py-0">
       {message && (
         <div className="error" style={{ color: "white" }}>
           {message}
         </div>
       )}
 
-      <div className="w-full bg-slate-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+      <div className="flex flex-col justify-center w-2/3 m-auto border-2 border-gray-700 rounded-sm">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
+          <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
             Edit your Blog
           </h1>
           <form className="space-y-4 md:space-y-6" onSubmit={handleUpdate}>
             <div>
               <label
                 htmlFor="email"
-                className="block mb-2 text-sm font-medium  "
+                className="block mb-2 text-sm font-semibold "
               >
                 Title
               </label>
               <input
-                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                className="bg-primary-base shadow-lg border-2 sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 value={blogData.title}
                 onChange={handleChange}
                 name="title"
@@ -92,13 +92,13 @@ const EditBlog = () => {
             <div>
               <label
                 htmlFor="content"
-                className="block mb-2 text-sm font-medium text-gray-900 "
+                className="block mb-2 text-sm font-semibold text-gray-900 "
               >
                 Content
               </label>
-              <div className="rounded overflow-hidden">
+              <div className="overflow-hidden border-2 rounded">
                 <ReactQuill
-                  className="text-black bg-slate-400 "
+                  className="text-black "
                   theme="snow"
                   value={value}
                   onChange={handleEditorChange}
@@ -109,13 +109,13 @@ const EditBlog = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block mb-2 text-sm font-medium  "
+                className="block mb-2 text-sm font-semibold "
               >
                 File Upload
               </label>
 
               <input
-                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg border-2 focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 type="file"
                 name="image"
                 id="image"
