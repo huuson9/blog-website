@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import ImageResize from "quill-image-resize-module-react";
 import FileValidation from "../services/FileValidation";
+
+Quill.register("modules/imageResize", ImageResize);
 
 const CreateBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -21,6 +24,8 @@ const CreateBlog = () => {
     image: "",
     author: user.user_id,
   });
+
+  console.log(blog);
 
   useEffect(() => {
     const getCategory = () => {
@@ -89,105 +94,110 @@ const CreateBlog = () => {
       });
   };
 
+  const modules = {
+    toolbar: [
+      [{ font: [] }, { header: [1, 2, 3, 4, 5, 6, false] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ align: [] }],
+      [{ color: [] }, { background: [] }],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image", "video", "formula"],
+      ["clean"],
+    ],
+    imageResize: { modules: ["Resize", "DisplaySize"] },
+  };
+
   return (
-    <div className="items-center">
-      <div className="flex flex-col items-center justify-center  md:h-screen lg:py-0">
-        <div className="w-full bg-slate-800  rounded shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
-              Create a blog
-            </h1>
-            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="title"
-                  className="block mb-2 text-sm font-medium  "
-                >
-                  Title
-                </label>
-                <input
-                  className="bg-primary-base sm:text-sm rounded focus:ring-primary block w-full p-2.5 focus:outline-none"
-                  type="text"
-                  name="title"
-                  id="title"
-                  value={blog.title}
-                  onChange={handleChange}
-                  placeholder="Title of your blog"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="content"
-                  className="block mb-2 text-sm font-medium  "
-                >
-                  Content
-                </label>
-                <div className="rounded overflow-hidden">
-                  <ReactQuill
-                    className="text-black bg-slate-400 "
-                    theme="snow"
-                    value={value}
-                    onChange={handleEditorChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <label
-                  htmlFor="category"
-                  className="block mb-2 text-sm font-medium  "
-                >
-                  Category
-                </label>
-
-                <select
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded focus:ring-primary  block w-full p-2.5 focus:outline-none"
-                  name="category"
-                  id="category"
-                  value={blog.category}
-                  onChange={handleChange}
-                >
-                  {categoryArray.map((cat) => {
-                    return (
-                      <option key={cat[0]} value={cat[1]}>
-                        {cat[1]}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium  "
-                >
-                  File Upload
-                </label>
-
-                <input
-                  className="bg-primary-base sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
-                  type="file"
-                  name="image"
-                  id="image"
-                  onChange={handleFile}
-                />
-                {message && (
-                  <div className="text-primary-error text-center mt-2">
-                    {message}
-                  </div>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-              >
-                Create Blog
-              </button>
-            </form>
+    <div className="flex flex-col justify-center w-2/3 p-6 m-auto border-2 border-gray-700 rounded-sm">
+      <h1 className="mb-6 text-xl font-bold leading-tight tracking-tight md:text-2xl">
+        Create a blog
+      </h1>
+      <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="title" className="block mb-2 text-sm font-semibold">
+            Title
+          </label>
+          <input
+            className="bg-primary-base sm:text-sm rounded focus:ring-primary block w-full p-2.5 focus:outline-none border-2"
+            type="text"
+            name="title"
+            id="title"
+            value={blog.title}
+            onChange={handleChange}
+            placeholder="Title of your blog"
+            required
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="content"
+            className="block mb-2 text-sm font-semibold "
+          >
+            Content
+          </label>
+          <div className="overflow-hidden border-2 rounded">
+            <ReactQuill
+              className="text-black "
+              theme="snow"
+              modules={modules}
+              value={value}
+              onChange={handleEditorChange}
+            />
           </div>
         </div>
-      </div>
+        <div>
+          <label
+            htmlFor="category"
+            className="block mb-2 text-sm font-semibold"
+          >
+            Category
+          </label>
+
+          <select
+            className="bg-primary-base shadow-lg border-2 sm:text-sm rounded focus:ring-primary  block w-full p-2.5 focus:outline-none"
+            name="category"
+            id="category"
+            value={blog.category}
+            onChange={handleChange}
+          >
+            {categoryArray.map((cat) => {
+              return (
+                <option key={cat[0]} value={cat[1]}>
+                  {cat[1]}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="password" className="block mb-2 text-sm font-medium ">
+            File Upload
+          </label>
+
+          <input
+            className="bg-primary-base sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
+            type="file"
+            name="image"
+            id="image"
+            onChange={handleFile}
+          />
+          {message && (
+            <div className="mt-2 text-center text-primary-error">{message}</div>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+        >
+          Create Blog
+        </button>
+      </form>
     </div>
   );
 };

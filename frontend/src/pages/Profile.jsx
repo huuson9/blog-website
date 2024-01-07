@@ -76,14 +76,14 @@ const Profile = () => {
           </div>
         )}
 
-        <div className="flex flex-wrap md:flex-nowrap justify-around items-center">
+        <div className="flex flex-wrap items-center justify-around md:flex-nowrap">
           <div className="space-y-5">
             <p className="text-4xl font-semibold">
               Hi! <span className="text-primary">{profile.username}.</span>{" "}
               welcome to
               <span className="site-logo">
-                <span className="text-primary"> B</span>log
-                <span className="text-primary">H</span>ub
+                <span className="text-primary"> M</span>ind
+                <span className="text-primary">M</span>ingle
               </span>
             </p>
             <p className="text-lg font-semibold">
@@ -100,7 +100,7 @@ const Profile = () => {
               )}
             </p>
             <button
-              className="btn btn-sm bg-blue-500 text-white capitalize"
+              className="text-white capitalize bg-blue-500 btn btn-sm"
               to="/create"
             >
               {" "}
@@ -108,7 +108,7 @@ const Profile = () => {
             </button>
           </div>
           <img
-            className="max-w-md  rounded-full"
+            className="max-w-md rounded-full"
             src={`${BASE_URL}${profile.photo}`}
             alt=""
           />
@@ -116,7 +116,7 @@ const Profile = () => {
 
         {blogs.length > 0 && (
           <>
-            <p className="text-3xl font-bold text-center blog-title my-10">
+            <p className="my-10 text-3xl font-bold text-center blog-title">
               My Blogs
             </p>
           </>

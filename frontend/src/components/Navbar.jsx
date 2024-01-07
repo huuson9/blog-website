@@ -13,35 +13,21 @@ const Navbar = () => {
   return (
     <>
       <header>
-        <nav
-          className="
-          flex flex-wrap
-          items-center
-          justify-between
-          w-full
-          py-4
-          md:py-0
-          px-4
-          text-lg
-        "
-        >
+        <nav className="flex flex-wrap items-center justify-between w-full px-4 py-4 text-lg md:py-0">
           <div>
             <Link to="/">
-              <span className="site-logo" style={{ fontSize: "2rem" }}>
-                <span className="text-primary"> B</span>log
-                <span className="text-primary">H</span>ub
-              </span>
+              <img className="w-24" src="./logo.svg" alt="Description" />
             </Link>
           </div>
           <button
-            className="block md:hidden border border-primary rounded-lg p-2 focus:outline-none"
+            className="block p-2 border rounded-lg md:hidden border-primary focus:outline-none"
             type="button"
             onClick={toggleNav}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               id="menu-button"
-              className="h-6 w-6 cursor-pointer md:hidden block"
+              className="block w-6 h-6 cursor-pointer md:hidden"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -60,35 +46,31 @@ const Navbar = () => {
               show ? "block" : "hidden"
             } md:block w-full md:w-auto md:ml-auto align-middle`}
           >
-            <ul
-              className="
-              pt-4 text-gray-300 text-base
-              md:flex
-              md:justify-between 
-              md:pt-0"
-            >
-              <li className="md:p-4 py-2 block hover:text-primary font-bold">
-                <Link to="/technology">Technology</Link>
+            <ul className="pt-4 text-base text-gray-500 md:flex md:justify-between md:pt-0">
+              <li className="block py-2 mt-1 font-medium text-black md:p-4 ">
+                <Link to="/">Home</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-primary font-bold">
-                <Link to="/education">Education</Link>
+              <li className="block py-2 mt-1 font-medium md:p-4 hover:text-black ">
+                <Link to="/">Market</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-primary font-bold">
-                <Link to="/music">Music</Link>
+              <li className="block py-2 mt-1 font-medium md:p-4 hover:text-black ">
+                <Link to="/">Blog</Link>
               </li>
 
               {user ? (
-                <li className="md:p-4 py-2 block hover:text-primary ">
+                <li className="block py-2 mt-1 md:p-4 hover:text-black ">
                   <Link to="/profile">
-                    <p className="text-primary font-bold">{user.username}</p>
+                    <p className="font-semibold text-primary">
+                      {user.username}
+                    </p>
                   </Link>
                 </li>
               ) : null}
 
               {user ? (
-                <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                <li className="block py-2 mb-1 font-bold md:p-4 hover:text-primary">
                   <button
-                    className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
+                    className="px-4 py-1 font-bold text-white bg-blue-800 rounded hover:bg-blue-900"
                     onClick={() => {
                       userLogout();
                       navigate("/");
@@ -99,13 +81,13 @@ const Navbar = () => {
                 </li>
               ) : (
                 <>
-                  <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                  <li className="block py-2 mt-1 font-bold md:p-4 hover:text-black">
                     <Link to="/signup">Sign Up</Link>
                   </li>
 
-                  <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                  <li className="block py-2 mt-1 font-bold md:p-4 hover:text-primary">
                     <Link
-                      className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
+                      className="px-4 py-1 font-bold text-white bg-blue-800 rounded hover:bg-blue-900"
                       to="/login"
                     >
                       Login
