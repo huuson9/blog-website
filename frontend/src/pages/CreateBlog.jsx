@@ -5,6 +5,7 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import ImageResize from "quill-image-resize-module-react";
 import FileValidation from "../services/FileValidation";
+import AudioValidation from "../services/AudioValidation";
 
 Quill.register("modules/imageResize", ImageResize);
 
@@ -23,9 +24,8 @@ const CreateBlog = () => {
     category: "",
     image: "",
     author: user.user_id,
+    audio: "",
   });
-
-  console.log(blog);
 
   useEffect(() => {
     const getCategory = () => {
@@ -72,6 +72,18 @@ const CreateBlog = () => {
       };
     });
   };
+
+  const handleAudio = (e) => {
+    const { name, files } = e.target;
+    AudioValidation(files, setMessage, e);
+    setBlog((prev) => {
+      return {
+        ...prev,
+        [name]: files[0],
+      };
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -80,6 +92,7 @@ const CreateBlog = () => {
     formData.append("category", blog.category);
     formData.append("image", blog.image);
     formData.append("author", blog.author);
+    formData.append("audio", blog.audio);
     const requestOptions = {
       method: "POST",
       headers: {
@@ -176,7 +189,7 @@ const CreateBlog = () => {
         </div>
         <div>
           <label htmlFor="password" className="block mb-2 text-sm font-medium ">
-            File Upload
+            Images Upload
           </label>
 
           <input
@@ -185,6 +198,23 @@ const CreateBlog = () => {
             name="image"
             id="image"
             onChange={handleFile}
+          />
+          {message && (
+            <div className="mt-2 text-center text-primary-error">{message}</div>
+          )}
+        </div>
+
+        <div>
+          <label className="block mb-2 text-sm font-medium ">
+            Files Upload
+          </label>
+
+          <input
+            className="bg-primary-base sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
+            type="file"
+            name="audio"
+            id="audio"
+            onChange={handleAudio}
           />
           {message && (
             <div className="mt-2 text-center text-primary-error">{message}</div>

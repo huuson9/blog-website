@@ -15,6 +15,7 @@ class BlogSerializer(ModelSerializer):
             'date_updated',
             'content',
             'image',
+            'audio',
             'category',
             'publish_status',
             'likes',

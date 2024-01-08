@@ -41,7 +41,7 @@ const Home = () => {
           <img src={notfound} alt="" className="w-1/2 mx-auto" />
         </>
       ) : (
-        <div className="flex flex-row justify-around mt-7">
+        <div className="flex flex-row justify-around mt-6">
           <div className="">
             <p className="block p-4 py-2 font-semibold text-primary mt-9">
               Blog Topics
