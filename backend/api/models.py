@@ -55,6 +55,7 @@ class Blog(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     content = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True, null=True)
+    audio = models.FileField(upload_to='audio_files/', blank=True, null=True)
     category = models.CharField(
         max_length=100, default='uncategorized', choices=CHOICES)
     publish_status = models.BooleanField(default=True, choices=(

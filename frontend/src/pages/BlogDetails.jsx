@@ -1,3 +1,5 @@
+/* eslint-disable no-duplicate-case */
+/* eslint-disable no-fallthrough */
 import React, { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
@@ -12,6 +14,7 @@ import { IoIosTimer } from "react-icons/io";
 import LikeBtn from "../components/LikeBtn";
 import Loader from "../components/Loader";
 import ReactQuill from "react-quill";
+import getFileComponent from "../services/CheckFileVadiation";
 import "react-quill/dist/quill.bubble.css";
 
 const BlogDetails = () => {
@@ -42,6 +45,7 @@ const BlogDetails = () => {
     author_photo,
     date_created,
     image,
+    audio,
     category,
     total_likes,
     reading_time,
@@ -247,6 +251,7 @@ const BlogDetails = () => {
               <div>
                 <ReactQuill value={content} readOnly={true} theme={"bubble"} />
               </div>
+              {audio && getFileComponent(`${BASE_URL}${audio}`)}
             </div>
           </div>
           <h2 className="mt-5 mb-2 text-xl font-semibold">Comment</h2>

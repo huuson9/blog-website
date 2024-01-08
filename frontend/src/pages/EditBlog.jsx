@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 import ReactQuill from "react-quill";
 import FileValidation from "../services/FileValidation";
+import AudioValidation from "../services/AudioValidation";
 import "react-quill/dist/quill.snow.css";
 
 const EditBlog = () => {
@@ -17,6 +18,7 @@ const EditBlog = () => {
   const [blogData, setBlogData] = useState(blog);
   const [value, setValue] = useState(blog.content);
   const [imageUpdate, setImageUpdate] = useState(null);
+  const [audioUpdate, setAudioUpdate] = useState(null);
   const [message, setMessage] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +36,12 @@ const EditBlog = () => {
     setImageUpdate(files[0]);
   };
 
+  const handleAudio = (e) => {
+    const { files } = e.target;
+    AudioValidation(files, setMessage, e);
+    setAudioUpdate(files[0]);
+  };
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     const { title, content, category } = blogData;
@@ -44,6 +52,10 @@ const EditBlog = () => {
     if (imageUpdate) {
       formData.append("image", imageUpdate);
     }
+    if (audioUpdate) {
+      formData.append("audio", audioUpdate);
+    }
+
     const response = await fetch(`${BASE_URL}/api/blogs/${id}/update/`, {
       method: "PUT",
       headers: {
@@ -111,7 +123,7 @@ const EditBlog = () => {
                 htmlFor="password"
                 className="block mb-2 text-sm font-semibold "
               >
-                File Upload
+                Image Upload
               </label>
 
               <input
@@ -120,6 +132,20 @@ const EditBlog = () => {
                 name="image"
                 id="image"
                 onChange={handleImage}
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 text-sm font-semibold ">
+                File Upload
+              </label>
+
+              <input
+                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg border-2 focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                type="file"
+                name="file"
+                id="file"
+                onChange={handleAudio}
               />
             </div>
 
