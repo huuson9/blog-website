@@ -24,7 +24,7 @@ const Blog = (props) => {
 
   return (
     <div className="flex flex-row-reverse p-3 border shadow-xl rounded-2xl bg-primary-neutral gap-9">
-      <div>
+      <div className="w-1/4">
         <img
           className="object-cover h-48 transition duration-500 w-80 backdrop-grayscale"
           src={`${BASE_URL}${image}`}

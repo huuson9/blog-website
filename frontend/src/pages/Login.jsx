@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer, toast } from "react-toastify";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 
 const Login = () => {
   const { userLogin, errMessage } = useContext(AuthContext);
@@ -58,20 +59,20 @@ const Login = () => {
         )}
 
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[80vh] lg:py-0">
-          <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
+          <div className="w-full rounded-lg shadow bg-primary-neutral dark:border md:mt-0 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
+              <h1 className="text-xl font-bold leading-tight tracking-tight md:text-2xl">
                 Sign in to your account
               </h1>
               {errMessage && (
-                <p className="text-red-500 text-sm">{errMessage}</p>
+                <p className="text-sm text-red-500">{errMessage}</p>
               )}
 
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium  "
+                    className="block mb-2 text-sm font-medium "
                   >
                     Username
                   </label>
@@ -86,7 +87,7 @@ const Login = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium  "
+                    className="block mb-2 text-sm font-medium "
                   >
                     Password
                   </label>
@@ -105,7 +106,10 @@ const Login = () => {
                 >
                   Sign in
                 </button>
-                <p className="text-sm text-center font-light text-white dark:text-white">
+
+                <GoogleLoginButton />
+
+                <p className="text-sm font-light text-center text-white dark:text-white">
                   Don’t have an account?{" "}
                   <Link
                     to={"/signup"}

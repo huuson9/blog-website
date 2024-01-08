@@ -48,6 +48,7 @@ const Profile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authToken]);
 
+  console.log(profile);
   if (!user) {
     return (
       <>
@@ -122,7 +123,7 @@ const Profile = () => {
           </>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {blogs.map((blog) => {
             return (
               <Blog
