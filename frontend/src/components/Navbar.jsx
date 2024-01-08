@@ -1,11 +1,25 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { gapi } from "gapi-script";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+
+  const handleLogout = () => {
+    if (window.gapi && window.gapi.auth2) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
+        console.log("User signed out.");
+        // Here you can also clear any user data in your application state
+        userLogout(); // Assuming userLogout clears user data in your context
+      });
+    } else {
+      console.error("Google API not loaded");
+    }
+  };
 
   const toggleNav = () => {
     setShow(!show);
@@ -73,6 +87,7 @@ const Navbar = () => {
                     className="px-4 py-1 font-bold text-white bg-blue-800 rounded hover:bg-blue-900"
                     onClick={() => {
                       userLogout();
+                      handleLogout();
                       navigate("/");
                     }}
                   >
